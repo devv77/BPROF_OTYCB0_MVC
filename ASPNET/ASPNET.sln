@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNET", "ASPNET\ASPNET.csproj", "{89DAED85-DADD-4B9B-87E7-10FE6B6CEA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{6996BBA9-E24B-4848-B123-436CF52FE0BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{6996BBA9-E24B-4848-B123-436CF52FE0BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{526111C2-AE65-4A0A-BF5E-14AE628BABD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{526111C2-AE65-4A0A-BF5E-14AE628BABD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{5294B7ED-0130-4AAD-B5C9-78391355460A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{526111C2-AE65-4A0A-BF5E-14AE628BABD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{526111C2-AE65-4A0A-BF5E-14AE628BABD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{526111C2-AE65-4A0A-BF5E-14AE628BABD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5294B7ED-0130-4AAD-B5C9-78391355460A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5294B7ED-0130-4AAD-B5C9-78391355460A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5294B7ED-0130-4AAD-B5C9-78391355460A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5294B7ED-0130-4AAD-B5C9-78391355460A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
