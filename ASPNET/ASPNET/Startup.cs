@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
+using Logic;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace ASPNET
             services.AddTransient<IRepository<Driver>, DriversRepository>();
             services.AddTransient<IRepository<Team>, TeamRepository>();
             services.AddTransient<IRepository<League>, LeagueRepository>();
+            services.AddTransient<DriverLogic, DriverLogic>();
+            services.AddTransient<TeamLogic, TeamLogic>();
+            services.AddTransient<LeagueLogic, LeagueLogic>();
 
         }
 

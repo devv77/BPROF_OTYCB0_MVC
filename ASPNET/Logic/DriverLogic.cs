@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Logic
 {
-    class DriverLogic
+    public class DriverLogic
     {
 
         IRepository<Driver> driverrepo;
