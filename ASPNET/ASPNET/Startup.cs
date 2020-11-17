@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Models;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,9 @@ namespace ASPNET
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(opt => opt.EnableEndpointRouting = false);
-
+            services.AddTransient<IRepository<Driver>, DriversRepository>();
+            services.AddTransient<IRepository<Team>, TeamRepository>();
+            services.AddTransient<IRepository<League>, LeagueRepository>();
 
         }
 

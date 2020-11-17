@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repository
 {
-    class DriversRepository : IRepository<Driver>
+    public class DriversRepository : IRepository<Driver>
     {
         DriversDbContext context = new DriversDbContext();
         public void AddItem(Driver item)
