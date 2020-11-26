@@ -1,0 +1,14 @@
+﻿html{
+    scrollbar-base-color: red yellow;
+}
+body {
+ background-color: deepskyblue;   
+}
+h1 {
+    color: darkorange;
+    text-align: center;
+    font-family: 'Palatino Linotype';
+}
+p {
+    font-family: 'Palatino Linotype';
+}
