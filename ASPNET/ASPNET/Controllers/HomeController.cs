@@ -38,10 +38,25 @@ namespace ASPNET.Controllers
             return RedirectToAction(nameof(LeagueList));
         }
         public IActionResult LeagueList()
-        {
-            
+        {            
             return View(leagueLogic.GetLeagues());
-
+        }
+        [HttpGet]
+        public IActionResult TeamAdd(string id)
+        {
+            return View(nameof(TeamAdd),id);
+        }
+        [HttpPost]
+        public IActionResult TeamAdd(Team team, string id)
+        {
+            team.LID = id;
+            team.TID = Guid.NewGuid().ToString();
+            teamLogic.AddTeam(team);
+            return View(nameof(LeagueList));
+        }
+        public IActionResult TeamList()
+        {
+            return View(teamLogic.GetAllTeam());
         }
 
     }

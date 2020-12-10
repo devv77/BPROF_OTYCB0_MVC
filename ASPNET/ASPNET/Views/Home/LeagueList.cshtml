@@ -43,6 +43,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RaceTypes)
             </td>
+            <td>
+                <a href="/Home/TeamAdd?id=@item.LID">Add a team</a>
+            </td>
+            <td>
+                <a href="/Home/TeamList">List of teams</a>
+            </td>
         </tr>
 }
     </tbody>
