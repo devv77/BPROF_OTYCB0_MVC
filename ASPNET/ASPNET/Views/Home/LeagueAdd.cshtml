@@ -1,0 +1,27 @@
+﻿
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adding League</title>
+</head>
+<body>
+    <h1>Adding a league</h1>
+    <form action="/Home/LeagueAdd" method="post">
+        <label for="name">League name:</label><br>
+        <input type="text" name="Name"><br>
+        <label for="rate">Rating (between 1 and 10):</label><br>
+        <input type="number" name="Rating" min="1" max="10"><br>
+        <label for="homology">Homology:</label>
+        <input type="checkbox" name="Homology"><br>
+        <label for="racetype">Race type:</label><br>                
+        <input type="radio" id="circuit" name="Racetypes" value="circuit">
+        <label for="circuit">Circuit</label><br>
+        <input type="radio" id="sprint" name="Racetypes" value="sprint">
+        <label for="sprint">Sprint</label><br>
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Models.League>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LeagueList</title>
+</head>
+<body>
+<h2>List of Leagues</h2>
+    
+<table class="table">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Homology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RaceTypes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Homology)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RaceTypes)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+    <p>
+<a href="/Home/Index">Main menu</a>
+</body>
+</html>

@@ -14,7 +14,7 @@ namespace Models
         public string Name { get; set; }
         [Range(0, 10)]
         public int Rating { get; set; }
-        public bool Homology { get; set; }
+        public bool Homology { get; set; }//megfelel-e a szabályoknak az autó
         public RaceType RaceTypes { get; set; }
 
         public virtual ICollection<Team> Teams{get;set;}
