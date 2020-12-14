@@ -22,15 +22,15 @@ namespace Logic
         }
 
 
-        public void AddPlayer(Driver player)
+        public void AddDriver(Driver Driver)
         {
-            this.driverrepo.AddItem(player);
+            this.driverrepo.AddItem(Driver);
 
         }
 
-        public void DeletePlayer(string IgazolasSzama)
+        public void DeletePlayer(string id)
         {
-            this.driverrepo.Delete(IgazolasSzama);
+            this.driverrepo.Delete(id);
         }
 
         public IQueryable<Driver> GetDrivers()
@@ -39,13 +39,13 @@ namespace Logic
         }
 
 
-        public Driver GetPlayer(string DID)
+        public Driver GetDriver(string DID)
         {
             return driverrepo.Search(DID);
         }
 
 
-        public void UpdatePlayer(string DID, Driver newdriver)
+        public void UpdateDriver(string DID, Driver newdriver)
         {
             driverrepo.Update(DID, newdriver);
         }

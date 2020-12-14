@@ -1,0 +1,26 @@
+﻿@model string
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adding a Driver</title>
+</head>
+<body>
+    <h1>Adding a Driver</h1>
+    <br>
+    <form action="/Home/DriverAdd" method="post">
+        <input type="hidden" name="TID" value="TID" />
+
+        <label for="DName">Driver name:</label><br>
+        <input type="text" name="DName"><br>
+        <label for="BornYear">Driver born year:</label><br>
+        <input type="number" name="BornYear" /><br>
+        <label for="CountryB">Country of origin:</label><br>
+        <input type="text" name="CountryB"><br>
+        <label for="RaceNumber">Race number:</label><br>
+        <input type="number" name="RaceNumber" /><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

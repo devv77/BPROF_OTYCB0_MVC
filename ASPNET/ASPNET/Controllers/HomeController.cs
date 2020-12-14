@@ -52,11 +52,24 @@ namespace ASPNET.Controllers
             team.LID = id;
             team.TID = Guid.NewGuid().ToString();
             teamLogic.AddTeam(team);
-            return View(nameof(LeagueList));
+            return RedirectToAction(nameof(TeamList));
         }
         public IActionResult TeamList()
         {
             return View(teamLogic.GetAllTeam());
+        }
+        [HttpGet]
+        public IActionResult DriverAdd(string id)
+        {
+            return View(nameof(DriverAdd),id);
+        }
+        [HttpPost]
+        public IActionResult DriverAdd(string id, Driver driver)
+        {
+            driver.TID = id;
+            driver.DID = Guid.NewGuid().ToString();
+            driverLogic.AddDriver(driver);
+            return View(nameof(LeagueList), id);
         }
 
     }

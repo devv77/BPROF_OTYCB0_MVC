@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<Models.Team>
 
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -34,7 +31,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr>            
             <td>
                 @Html.DisplayFor(modelItem => item.TName)
             </td>
@@ -46,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Engine)
+            </td>
+            <td>
+                <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
             </td>
         </tr>
 }
