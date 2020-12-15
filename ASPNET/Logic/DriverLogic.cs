@@ -28,7 +28,7 @@ namespace Logic
 
         }
 
-        public void DeletePlayer(string id)
+        public void DeleteDriver(string id)
         {
             this.driverrepo.Delete(id);
         }
@@ -36,6 +36,14 @@ namespace Logic
         public IQueryable<Driver> GetDrivers()
         {
             return driverrepo.Search();
+        }
+
+        public IQueryable<Driver> GetDriversOfTeam(string id)
+        {
+            var drivers = from q in driverrepo.Search()
+                          where q.TID == id
+                          select q;
+            return drivers;
         }
 
 

@@ -11,49 +11,50 @@
 <body>
 
     <br>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Team name:
-            </th>
-            <th>
-                Team creation year:
-            </th>
-            <th>
-                Team origin:
-            </th>
-            <th>
-                Choice of engine:
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Engine)
-            </td>
-            <td>
-                <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
-            </td>
-            <td>
-                <a href="/Home/DriverList?id=@item.TID">List of drivers</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Team name:
+                </th>
+                <th>
+                    Team creation year:
+                </th>
+                <th>
+                    Team origin:
+                </th>
+                <th>
+                    Choice of engine:
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Engine)
+                    </td>
+                    <td>
+                        <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
+                    </td>
+                    <td>
+                        <a href="/Home/DriverList?id=@item.TID">List of drivers</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
     <p><a href="/Home/LeagueList">Bact to League list page</a>
 </body>
 </html>

@@ -19,5 +19,6 @@ namespace Models
         [NotMapped]
         public virtual Team OwnTeam { get; set; }
         public string TID { get; set; }
+        public string TIDN { get; set; }
     }
 }

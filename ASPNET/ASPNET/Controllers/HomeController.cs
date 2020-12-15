@@ -47,37 +47,43 @@ namespace ASPNET.Controllers
             return View(nameof(TeamAdd),id);
         }
         [HttpPost]
-        public IActionResult TeamAdd(Team team, string id)
-        {
-            team.LID = id;
+        public IActionResult TeamAdd(Team team)
+        {            
             team.TID = Guid.NewGuid().ToString();
             teamLogic.AddTeam(team);
             return RedirectToAction(nameof(TeamList));
-        }
+        }        
         public IActionResult AllTeamList()
         {
             return View(teamLogic.GetAllTeam());
         }
         public IActionResult TeamList(string id)
         {
-            return View(leagueLogic.GetLeagues());
+            return View(teamLogic.GetTeamOfLeague(id));
         }
+
+
         [HttpGet]
         public IActionResult DriverAdd(string id)
         {
             return View(nameof(DriverAdd),id);
         }
         [HttpPost]
-        public IActionResult DriverAdd(string id, Driver driver)
+        public IActionResult DriverAdd(Driver driver)
         {
-            driver.TID = id;
+            //driver.TID = id;
+            //driver.TIDN = teamLogic.GetTeam(id).TName;
             driver.DID = Guid.NewGuid().ToString();
-            driverLogic.AddDriver(driver);
+            driverLogic.AddDriver(driver);            
             return RedirectToAction(nameof(TeamList));
         }
         public IActionResult DriverList()
         {
             return View(driverLogic.GetDrivers());
+        }
+        public IActionResult DriversOfTeam(string id)
+        {
+            return View(driverLogic.GetDriversOfTeam(id));
         }
 
         public IActionResult GenerateData()

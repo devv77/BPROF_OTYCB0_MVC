@@ -10,11 +10,11 @@ namespace Models
     {
         [Key]
         public string LID { get; set; }
-        [StringLength(25)]
+        [StringLength(100)]
         public string Name { get; set; }
         [Range(0, 10)]
         public int Rating { get; set; }
-        public bool Homology { get; set; }//megfelel-e a szabályoknak az autó
+        public bool Homology { get; set; }//open wheeled=1 or sport/touring=0
         public RaceType RaceTypes { get; set; }
 
         public virtual ICollection<Team> Teams{get;set;}

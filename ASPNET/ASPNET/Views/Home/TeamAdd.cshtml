@@ -9,7 +9,7 @@
     <h1>Adding a Team</h1>
     <br>
     <form action="/Home/TeamAdd" method="post">
-        <input type="hidden" name="LID" value="LID" />
+        <input type="hidden" name="LID" value="@Model" />
         <label for="TName">Team name:</label><br>
         <input type="text" name="TName"><br>
         <label for="created">Creation of year:</label><br>

@@ -9,8 +9,10 @@
     <h1>Adding a Driver</h1>
     <br>
     <form action="/Home/DriverAdd" method="post">
-        <input type="hidden" name="TID" value="TID" />
-
+        <input type="hidden" name="TID" value="@Model" />
+        
+        <input type="hidden" name="TIDN" value="TIDN"/>
+        
         <label for="DName">Driver name:</label><br>
         <input type="text" name="DName"><br>
         <label for="BornYear">Driver born year:</label><br>

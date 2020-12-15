@@ -38,6 +38,14 @@ namespace Logic
             return teamrepo.Search();
         }
 
+        public IQueryable<Team> GetTeamOfLeague(string id)
+        {
+            var teams = from q in teamrepo.Search()
+                        where q.LID == id
+                        select q;
+            return teams;
+        }
+
         public Team GetTeam(string TeamID)
         {
             return teamrepo.Search(TeamID);

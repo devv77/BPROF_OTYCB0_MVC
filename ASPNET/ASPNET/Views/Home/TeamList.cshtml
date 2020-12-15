@@ -11,6 +11,7 @@
 <body>
 
     <br>
+    <div>
 <table class="table">
     <thead>
         <tr>
@@ -45,15 +46,19 @@
                 @Html.DisplayFor(modelItem => item.Engine)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TID)
+            </td>
+            <td>
                 <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
             </td>
             <td>
-                <a href="/Home/DriverList?id=@item.TID">List of drivers</a>
+                <a href="/Home/DriversOfTeam?id=@item.TID">List of drivers</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+        </div>
     <p><a href="/Home/LeagueList">Bact to League list page</a>
 </body>
 </html>
