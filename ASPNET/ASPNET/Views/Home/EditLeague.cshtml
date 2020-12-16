@@ -1,0 +1,31 @@
+﻿@using Models
+@model League
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Editing a League</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Editing a league</h1>
+    <form action="/Home/LeagueAdd" method="post">
+        <input type="hidden" name="LID" value="@Model.LID">
+        <label for="name">League name:</label><br>
+        <input type="text" name="Name"><br>
+        <label for="rate">Rating (between 1 and 10):</label><br>
+        <input type="number" name="Rating" min="1" max="10"><br>
+        <label for="homology">Homology:</label>
+        <input type="checkbox" name="Homology"><br>
+        <label for="racetype">Race type:</label><br>
+        <input type="radio" id="circuit" name="Racetypes" value="circuit">
+        <label for="circuit">Circuit</label><br>
+        <input type="radio" id="sprint" name="Racetypes" value="sprint">
+        <label for="sprint">Sprint</label><br>
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+</body>
+</html>

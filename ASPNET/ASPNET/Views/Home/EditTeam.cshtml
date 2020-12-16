@@ -1,4 +1,5 @@
-﻿@model string  
+﻿@using Models
+@model Team  
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +10,8 @@
     <h1>Adding a Team</h1>
     <br>
     <form action="/Home/TeamAdd" method="post">
-        <input type="hidden" name="LID" value="@Model" />
+        <input type="hidden" name="LID" value="@Model.LID" />
+        <input type="hidden" name="TID" value="@Model.TID" />
         <label for="TName">Team name:</label><br>
         <input type="text" name="TName"><br>
         <label for="created">Creation of year:</label><br>
@@ -17,17 +19,7 @@
         <label for="Country">Country:</label><br>
         <input type="text" name="Country"><br>
         <label for="Engine">Engine type:</label><br>
-        <input list="Engine">
-        <datalist id="Engine">        
-            <option value="Ferrari">Ferrari</option>
-            <option value="Honda">Honda</option>
-            <option value="Mercedes">Mercedes</option>
-            <option value="Audi">Audi</option>
-            <option value="Renault">Renault</option>
-            <option value="BMW">BMW</option>
-            <option value="Gibson">Gibson</option>
-            <option value="Seat">Seat</option>
-        </datalist>      
+        <input type="text" name="Engine"><br>
         <input type="submit" value="Submit">
     </form>
 </body>

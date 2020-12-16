@@ -11,14 +11,14 @@ namespace Logic
     {
 
         IRepository<Driver> driverrepo;
-        IRepository<Team> teamrepo;
-        IRepository<League> leaguerepo;
+        //IRepository<Team> teamrepo;
+        //IRepository<League> leaguerepo;
 
-        public DriverLogic(IRepository<Driver> driverrepo, IRepository<Team> teamrepo, IRepository<League> leaguerepo)
+        public DriverLogic(IRepository<Driver> driverrepo)
         {
             this.driverrepo = driverrepo;
-            this.teamrepo = teamrepo;
-            this.leaguerepo = leaguerepo;
+            //this.teamrepo = teamrepo;
+            //this.leaguerepo = leaguerepo;
         }
 
 
@@ -27,7 +27,10 @@ namespace Logic
             this.driverrepo.AddItem(Driver);
 
         }
-
+        public void DeleteDriver(Driver driver)
+        {
+            this.driverrepo.Delete(driver);
+        }
         public void DeleteDriver(string id)
         {
             this.driverrepo.Delete(id);

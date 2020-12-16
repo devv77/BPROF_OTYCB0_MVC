@@ -7,14 +7,14 @@ namespace Logic
 {
     public class LeagueLogic
     {
-        IRepository<Driver> driverrepo;
-        IRepository<Team> teamrepo;
+        //IRepository<Driver> driverrepo;
+        //IRepository<Team> teamrepo;
         IRepository<League> leaguerepo;
 
-        public LeagueLogic(IRepository<Driver> driverrepo, IRepository<Team> teamrepo, IRepository<League> leaguerepo)
+        public LeagueLogic(IRepository<League> leaguerepo)
         {
-            this.teamrepo = teamrepo;
-            this.driverrepo = driverrepo;
+            //this.teamrepo = teamrepo;
+            //this.driverrepo = driverrepo;
             this.leaguerepo = leaguerepo;
         }
 
@@ -26,7 +26,7 @@ namespace Logic
         public void DeleteLeague(string LeagueID)
         {
             this.leaguerepo.Delete(LeagueID);
-        }
+        }       
 
 
         public IQueryable<League> GetLeagues()

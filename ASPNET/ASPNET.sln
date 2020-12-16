@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{526111C2-AE65-4A0A-BF5E-14AE628BABD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{5294B7ED-0130-4AAD-B5C9-78391355460A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{5294B7ED-0130-4AAD-B5C9-78391355460A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{83EF94A3-1AC9-4550-A146-4AC115BD62D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{83EF94A3-1AC9-4550-A146-4AC115BD62D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Test\Tests.csproj", "{C76D5B76-B76D-43C7-8159-CF313D402227}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{83EF94A3-1AC9-4550-A146-4AC115BD62D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83EF94A3-1AC9-4550-A146-4AC115BD62D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83EF94A3-1AC9-4550-A146-4AC115BD62D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76D5B76-B76D-43C7-8159-CF313D402227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76D5B76-B76D-43C7-8159-CF313D402227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76D5B76-B76D-43C7-8159-CF313D402227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76D5B76-B76D-43C7-8159-CF313D402227}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
