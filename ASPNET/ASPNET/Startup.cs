@@ -19,7 +19,7 @@ namespace ASPNET
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(opt => opt.EnableEndpointRouting = false);
+            services.AddMvc(opt => opt.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
             services.AddTransient<IRepository<Driver>, DriversRepository>();
             services.AddTransient<IRepository<Team>, TeamRepository>();
             services.AddTransient<IRepository<League>, LeagueRepository>();
@@ -39,7 +39,7 @@ namespace ASPNET
 
             app.UseMvcWithDefaultRoute();
             app.UseRouting();
-
+            app.UseStaticFiles();
             
         }
     }
