@@ -53,6 +53,11 @@ namespace ASPNET.Controllers
             leagueLogic.UpdateLeague(l.LID, l);
             return View(nameof(LeagueList), leagueLogic.GetLeagues());
         }
+        public IActionResult LeagueDelete(string id)
+        {
+            leagueLogic.DeleteLeague(id);
+            return RedirectToAction(nameof(LeagueList));
+        }
         /*----------------------------------------------------------*/
         [HttpGet]
         public IActionResult TeamAdd(string id)
@@ -85,6 +90,11 @@ namespace ASPNET.Controllers
             teamLogic.UpdateTeam(t.LID, t);
             return View(nameof(TeamList), t.LID);
         }
+        public IActionResult TeamDelete(string id)
+        {
+            teamLogic.DeleteTeam(id);
+            return RedirectToAction(nameof(AllTeamList));
+        }
 
         /*----------------------------------------------------------*/
         [HttpGet]
@@ -102,7 +112,7 @@ namespace ASPNET.Controllers
             driverLogic.UpdateDriver(driver.DID, driver);
             return RedirectToAction(nameof(TeamList));
         }
-        public IActionResult DriverList()
+        public IActionResult AllDriverList()
         {
             return View(driverLogic.GetDrivers());
         }
@@ -120,6 +130,11 @@ namespace ASPNET.Controllers
         {
             driverLogic.UpdateDriver(d.TID, d);
             return View(nameof(DriverList), d.TID);
+        }
+        public IActionResult DriverDelete(string id)
+        {
+            driverLogic.DeleteDriver(id);
+            return RedirectToAction(nameof(AllDriverList));
         }
         /*----------------------------------------------------------*/
         public IActionResult GenerateData()

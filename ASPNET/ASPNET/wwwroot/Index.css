@@ -88,4 +88,17 @@ h1 {
     padding:10px;
     border-style:dashed;
     border-color:black;
+    text-align:justify;
+}
+.content table td{
+    border:40px solid aquamarine;
+}
+
+.content table td left{
+    text-align:left;
+    height:50px;
+}
+.content img{
+    width:450px;
+    height:250px;
 }

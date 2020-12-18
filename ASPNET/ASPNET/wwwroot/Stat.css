@@ -1,5 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,400;1,500;1,700&display=swap');
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +10,7 @@
 }
 
 body {
-    padding-top:25vh;
+    padding-top: 25vh;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -17,10 +19,10 @@ body {
     box-sizing: border-box;
     height: 100vh;
 }
-
 a {
     text-decoration: none;
 }
+
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -53,6 +55,6 @@ table {
         text-transform: uppercase;
     }
 
-    div{
-        align-content:end;
-    }
+div {
+    align-content: end;
+}

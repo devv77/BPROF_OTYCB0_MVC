@@ -6,6 +6,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/List.css" rel="stylesheet" />
+
     <title>TeamList</title>
 </head>
 <body>
@@ -27,34 +29,40 @@
                     Choice of engine:
                 </th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Engine)
-                    </td>
-                    <td>
-                        <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
-                    </td>
-                    <td>
-                        <a href="/Home/DriverList?id=@item.TID">List of drivers</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Engine)
+                </td>
+                <td>
+                    <a href="/Home/DriverAdd?id=@item.TID">Adding a driver</a>
+                </td>
+                <td>
+                    <a href="/Home/DriverList?id=@item.TID">List of drivers</a>
+                </td>
+                <td>
+                    <a href="/Home/TeamDelete?id=@item.TID">Delete Team</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
-    <p><a href="/Home/LeagueList">Bact to League list page</a>
+    <p>
+        <a href="/Home/LeagueList">Bact to League list page</a><br>
+        <a href="/Home/AllDriverList">List of all drivers</a>
 </body>
 </html>
