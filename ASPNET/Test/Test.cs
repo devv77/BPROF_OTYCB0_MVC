@@ -297,19 +297,92 @@ namespace Tests
                 new Driver { DID = Guid.NewGuid().ToString(), DName = "Teszt Elek", BornYear = 1990, CountryB = "Test2", RaceNumber = 4, TID = teams.ElementAt(2).TID }
             };
 
-            List<Driver> expected = new List<Driver>()
-            {
-                new Driver { DID = Guid.NewGuid().ToString(), DName = "Daniel Ricciardo", BornYear = 1989, CountryB = "Australia", RaceNumber = 3, TID = teams.ElementAt(2).TID },
+            List<Driver> expected = new List<Driver>();
+            /*{
+                new Driver { DID = drivers[1].DID, DName = "Daniel Ricciardo", BornYear = 1989, CountryB = "Australia", RaceNumber = 3, TID = teams.ElementAt(2).TID },
                 new Driver { DID = drivers[4].DID, DName = "Teszt Elek", BornYear = 1990, CountryB = "Test2", RaceNumber = 4, TID = teams.ElementAt(2).TID }
-            };
-
+            };*/
+            expected.Add(drivers[1]);
+            expected.Add(drivers[4]);
             teamRepo.Setup(x => x.Search()).Returns(teams.AsQueryable);
+            
             driverRepo.Setup(x => x.Search()).Returns(drivers.AsQueryable);
             var result = s.OldestTeamDrivers();
             Assert.That(result, Is.EqualTo(expected));
 
+        }
+
+        [Test]
+        public void TestMostDriverInTeam()
+        {
+            DriverLogic dl = new DriverLogic(this.driverRepo.Object);
+            TeamLogic tl = new TeamLogic(this.teamRepo.Object);
+
+            StatLogic s = new StatLogic(tl, dl);
+
+            List<Team> teams = new List<Team>()
+            {
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Mercedes-AMG Petronas F1 Team", Created = 2010, Country = "Germany", Engine = ESuppliers.Mercedes },
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Aston Martin Red Bull Racing", Created = 2005, Country = "Austria", Engine = ESuppliers.Honda},
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Renault DP World F1 Team", Created = 1977, Country = "France", Engine = ESuppliers.Renault},
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Zengő Motorsport Services KFT", Created = 1996, Country = "Hungary", Engine = ESuppliers.Seat },
+            };
+
+            List<Driver> drivers = new List<Driver>()
+            {
+                new Driver { DID = Guid.NewGuid().ToString(), DName = "Valtteri Bottas", BornYear = 1989, CountryB = "Finland", RaceNumber = 77, TID = teams.ElementAt(0).TID },
+                new Driver { DID = Guid.NewGuid().ToString(), DName = "Daniel Ricciardo", BornYear = 1989, CountryB = "Australia", RaceNumber = 3, TID = teams.ElementAt(2).TID },
+                new Driver { DID = Guid.NewGuid().ToString(), DName = "Max Verstappen", BornYear = 1997, CountryB = "Belgium", RaceNumber = 33, TID = teams.ElementAt(1).TID },
+                new Driver { DID = Guid.NewGuid().ToString(), DName = "Boldizs Bence", BornYear = 1997, CountryB = "Hungary", RaceNumber = 55, TID = teams.ElementAt(3).TID },
+                new Driver { DID = Guid.NewGuid().ToString(), DName = "Teszt Elek", BornYear = 1990, CountryB = "Test2", RaceNumber = 4, TID = teams.ElementAt(2).TID }
+            };
+
+            int expected = 2;
+            teamRepo.Setup(x => x.Search()).Returns(teams.AsQueryable);
+            driverRepo.Setup(x => x.Search()).Returns(drivers.AsQueryable);
+            var result = s.MostDriverInTeam();
+            Assert.That(result, Is.EqualTo(expected));
 
         }
+        [Test]
+        public void TestTeamOfBestLeague()
+        {
+            LeagueLogic ll = new LeagueLogic(this.leagueRepo.Object);
+            TeamLogic tl = new TeamLogic(this.teamRepo.Object);
+
+            StatLogic s = new StatLogic(tl, ll);
+
+            List<League> leagues = new List<League>()
+            {
+                new League() {LID = Guid.NewGuid().ToString(), Name = "Formula 1 (F1)", Rating = 8, Homology = true, RaceTypes = RaceType.circuit},
+                new League() { LID = Guid.NewGuid().ToString(), Name = "World Touring Car Championship (WTCC)", Rating = 7, Homology = false, RaceTypes = RaceType.circuit },
+
+            };
+
+            List<Team> teams = new List<Team>()
+            {
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Mercedes-AMG Petronas F1 Team", Created = 2010, Country = "Germany", Engine = ESuppliers.Mercedes, LID = leagues.ElementAt(0).LID },
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Aston Martin Red Bull Racing", Created = 2005, Country = "Austria", Engine = ESuppliers.Honda, LID = leagues.ElementAt(0).LID },
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Renault DP World F1 Team", Created = 1977, Country = "France", Engine = ESuppliers.Renault, LID = leagues.ElementAt(0).LID },
+                new Team { TID = Guid.NewGuid().ToString(), TName = "Zengő Motorsport Services KFT", Created = 1996, Country = "Hungary", Engine = ESuppliers.Seat, LID = leagues.ElementAt(1).LID },
+            };
+
+            List<Team> expected = new List<Team>();
+            expected.Add(teams[0]);
+            expected.Add(teams[1]);
+            expected.Add(teams[2]);
+
+            leagueRepo.Setup(x => x.Search()).Returns(leagues.AsQueryable);
+            teamRepo.Setup(x => x.Search()).Returns(teams.AsQueryable);
+            var result = s.TeamOfBestLeague();
+            Assert.That(result, Is.EqualTo(expected));
+
+
+        }
+
+
+
+
 
     }
 }

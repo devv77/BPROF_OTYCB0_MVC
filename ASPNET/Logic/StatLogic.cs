@@ -32,6 +32,11 @@ namespace Logic
             teamLogic = tl;
             driverLogic = dl;
         }
+        public StatLogic(TeamLogic tl, LeagueLogic ll)
+        {
+            teamLogic = tl;
+            leagueLogic = ll;
+        }
         public StatLogic(IRepository<Driver> driver, IRepository<Team> team)
         {
             repoTeam = team;
@@ -54,6 +59,16 @@ namespace Logic
 
         public List<Driver> OldestTeamDrivers()
         {
+            var t111 = teamLogic.GetAllTeam();
+            var d111 = driverLogic.GetDrivers();
+            var oldTeamD111 = (from x in teamLogic.GetAllTeam().ToList()
+                            join y in driverLogic.GetDrivers().ToList()
+                            on x.TID equals y.TID
+                            orderby x.Created ascending
+                            select y);
+
+
+
             var oldTeamD = (from x in teamLogic.GetAllTeam().ToList()                            
                             join y in driverLogic.GetDrivers().ToList()
                             on x.TID equals y.TID

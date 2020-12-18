@@ -8,5 +8,50 @@
     
         <h1>Stats</h1>
     
+        <p>The most driver in a team: @Model.MostDriverInTeam </p>
+
+        <p>Teams of best league: 
+        <div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Team name:
+                </th>
+                <th>
+                    Team creation year:
+                </th>
+                <th>
+                    Team origin:
+                </th>
+                <th>
+                    Choice of engine:
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TeamsOfBestLeague)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Engine)
+                    </td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div></p>
+
+
     </body>
     </html>
