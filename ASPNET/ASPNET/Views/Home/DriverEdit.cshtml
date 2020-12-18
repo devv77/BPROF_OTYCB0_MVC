@@ -1,16 +1,18 @@
-﻿@model string
+﻿@using Models
+@model Driver
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Adding a Driver</title>
+    <title>Editing a Driver</title>
 </head>
 <body>
-    <h1>Adding a Driver</h1>
+    <h1>Editing a Driver</h1>
     <br>
-    <form action="/Home/DriverAdd" method="post">
-        <input type="hidden" name="TID" value="@Model" />      
-        
+    <form action="/Home/DriverEdit" method="post">
+        <input type="hidden" name="TID" value="@Model.TID" />
+        <input type="hidden" name="DID" value="@Model.DID" />
+
         <label for="DName">Driver name:</label><br>
         <input type="text" name="DName"><br>
         <label for="BornYear">Driver born year:</label><br>
@@ -19,7 +21,7 @@
         <input type="text" name="CountryB"><br>
         <label for="RaceNumber">Race number:</label><br>
         <input type="number" name="RaceNumber" /><br>
-        
+
         <input type="submit" value="Submit">
     </form>
 </body>

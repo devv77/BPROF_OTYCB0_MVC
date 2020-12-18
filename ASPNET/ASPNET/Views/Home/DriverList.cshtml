@@ -12,9 +12,7 @@
     <title>View</title>
 </head>
 <body>
-<p>
-    <a href="/Home/Index">Back to main menu</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>            
@@ -31,9 +29,8 @@
                 Racer number:
             </th>
             <th>
-                Name of the team:
+                Edit
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -51,13 +48,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RaceNumber)
             </td>
-            <td>                 
-                @Html.DisplayFor(modelItem => item.TIDN)
+            <td>
+                <a href="/Home/EditDriver?id=@item.DID">Edit driver</a>
             </td>
             
         </tr>
 }
     </tbody>
 </table>
+
+<p><a href="/Home/TeamList">Back to Teams</a></p>
+<p><a href="/Home/Index">Back to main menu</a></p>
 </body>
 </html>

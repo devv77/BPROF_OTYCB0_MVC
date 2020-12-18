@@ -19,6 +19,25 @@ namespace Models
         [NotMapped]
         public virtual Team OwnTeam { get; set; }
         public string TID { get; set; }
-        public string TIDN { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Driver)
+            {
+                Driver driver = obj as Driver;
+                return this.DID == driver.DID && this.DName == driver.DName && this.BornYear == driver.BornYear
+                    && this.CountryB == driver.CountryB && this.RaceNumber == driver.RaceNumber && this.OwnTeam == driver.OwnTeam
+                    && this.TID == driver.TID;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
+
+
     }
 }

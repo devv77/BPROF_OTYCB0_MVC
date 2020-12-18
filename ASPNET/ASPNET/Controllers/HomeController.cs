@@ -43,12 +43,12 @@ namespace ASPNET.Controllers
             return View(leagueLogic.GetLeagues());
         }
         [HttpGet]
-        public IActionResult EditLeague(string id)
+        public IActionResult LeagueEdit(string id)
         {
-            return View(nameof(EditLeague), leagueLogic.GetLeague(id));
+            return View(nameof(LeagueEdit), leagueLogic.GetLeague(id));
         }
         [HttpPost]
-        public IActionResult EditLeague(League l)
+        public IActionResult LeagueEdit(League l)
         {
             leagueLogic.UpdateLeague(l.LID, l);
             return View(nameof(LeagueList), leagueLogic.GetLeagues());
@@ -75,12 +75,12 @@ namespace ASPNET.Controllers
             return View(teamLogic.GetTeamOfLeague(id));
         }
         [HttpGet]
-        public IActionResult EditTeam(string id)
+        public IActionResult TeamEdit(string id)
         {
-            return View(nameof(EditTeam), teamLogic.GetTeam(id));
+            return View(nameof(TeamEdit), teamLogic.GetTeam(id));
         }
         [HttpPost]
-        public IActionResult EditTeam(Team t)
+        public IActionResult TeamEdit(Team t)
         {
             teamLogic.UpdateTeam(t.LID, t);
             return View(nameof(TeamList), t.LID);
@@ -97,39 +97,40 @@ namespace ASPNET.Controllers
         {
             //driver.TID = id;
             //driver.TIDN = teamLogic.GetTeam(id).TName;
-            driver.DID = Guid.NewGuid().ToString();
-            driverLogic.AddDriver(driver);            
+            driver.DID = Guid.NewGuid().ToString();            
+            driverLogic.AddDriver(driver);
+            driverLogic.UpdateDriver(driver.DID, driver);
             return RedirectToAction(nameof(TeamList));
         }
         public IActionResult DriverList()
         {
             return View(driverLogic.GetDrivers());
         }
-        public IActionResult DriversOfTeam(string id)
+        public IActionResult DriverList(string id)
         {
             return View(driverLogic.GetDriversOfTeam(id));
         }
         [HttpGet]
-        public IActionResult EditDriver(string id)
+        public IActionResult DriverEdit(string id)
         {
-            return View(nameof(EditDriver), driverLogic.GetDriver(id));
+            return View(nameof(DriverEdit), driverLogic.GetDriver(id));
         }
         [HttpPost]
-        public IActionResult EditDriver(Driver d)
+        public IActionResult DriverEdit(Driver d)
         {
             driverLogic.UpdateDriver(d.TID, d);
-            return View(nameof(DriversOfTeam), d.TID);
+            return View(nameof(DriverList), d.TID);
         }
         /*----------------------------------------------------------*/
         public IActionResult GenerateData()
         {
-            League lg1 = new League { LID = Guid.NewGuid().ToString(), Name = "Formula 1 (F1)", Rating = 8, Homology = true, RaceTypes = RaceType.circuit };
+            League lg1 = new League { LID = Guid.NewGuid().ToString(), Name = "Formula 1 (F1)", Rating = 10, Homology = true, RaceTypes = RaceType.circuit };
             leagueLogic.AddLeague(lg1);
             League lg2 = new League { LID = Guid.NewGuid().ToString(), Name = "Deutsche Tourenwagen Masters (DTM)", Rating = 5, Homology = false, RaceTypes = RaceType.circuit };
             leagueLogic.AddLeague(lg2);
             League lg3 = new League { LID = Guid.NewGuid().ToString(), Name = "World Touring Car Championship (WTCC)", Rating = 7, Homology = false, RaceTypes = RaceType.circuit };
             leagueLogic.AddLeague(lg3);
-            League lg4 = new League { LID = Guid.NewGuid().ToString(), Name = "Le Mans Series", Rating = 10, Homology = false, RaceTypes = RaceType.circuit };
+            League lg4 = new League { LID = Guid.NewGuid().ToString(), Name = "Le Mans Series", Rating = 8, Homology = false, RaceTypes = RaceType.circuit };
             leagueLogic.AddLeague(lg4);
             League lg5 = new League { LID = Guid.NewGuid().ToString(), Name = "Formula E", Rating = 3, Homology = true, RaceTypes = RaceType.circuit };
             leagueLogic.AddLeague(lg5);
@@ -177,38 +178,24 @@ namespace ASPNET.Controllers
 
         public IActionResult Statistics()
         {
-            //Oldest team drivers stat
+            StatLogic statLogic = new StatLogic(leagueLogic, teamLogic, driverLogic);
             Stat stat = new Stat();
-            var oldTeamD = (from x in teamLogic.GetAllTeam().ToList()
-                            join d in driverLogic.GetDrivers().ToList()
-                            on x.TID equals d.TID
-                            orderby x.Created ascending
-                            select x.Drivers).FirstOrDefault().ToList();                           
+            //Oldest team drivers stat
 
-            stat.DriversOfOldestTeam = oldTeamD;
+            stat.OldestTeamDrivers = statLogic.OldestTeamDrivers();
+
+         
+            stat.MostDriverInTeam=statLogic.MostDriverInTeam();
+
             /*----------------------------------------------------------------------*/
             //Most popular League and its teams
-            var BLT = (from x in leagueLogic.GetLeagues().ToList()
-                       join t in teamLogic.GetAllTeam().ToList()
-                       on x.LID equals t.LID
-                       orderby x.Rating descending
-                       select x.Teams).FirstOrDefault().ToList();
-                      
-            stat.TeamsOfBestLeague = BLT;
+
+            stat.TeamsOfBestLeague=statLogic.TeamOfBestLeague();
+
             /*----------------------------------------------------------------------*/
-            //Most used engine type and its drivers
-            var EAD = (from x in teamLogic.GetAllTeam().ToList()
-                       join d in driverLogic.GetDrivers().ToList()
-                       on x.TID equals d.TID
-                       group x by x.Engine into g
-                       select g.Select(x=> x.Engine)
-                       );
+            //Most used engine type and count
 
-
-
-            //stat.drivers = EAD;
-    
-
+            stat.MostUsedEngine= statLogic.MostUsedEngine();            
 
             return View(stat);
         }

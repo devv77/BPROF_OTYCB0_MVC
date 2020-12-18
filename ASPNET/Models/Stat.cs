@@ -6,8 +6,9 @@ namespace Models
 {
     public class Stat
     {
-        public List<Driver> DriversOfOldestTeam { get; set; }
-        public List<Driver> drivers { get; set; }
+        public List<Driver> OldestTeamDrivers;
+        public int MostDriverInTeam { get; set; }
+        public string MostUsedEngine { get; set; }
         public List<Team> TeamsOfBestLeague { get; set; }
     }
 }

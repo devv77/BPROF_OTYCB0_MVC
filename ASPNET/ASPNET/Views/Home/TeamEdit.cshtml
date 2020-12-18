@@ -4,12 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Adding a Team</title>
+    <title>Editing a Team</title>
 </head>
 <body>
-    <h1>Adding a Team</h1>
+    <h1>Editing a Team</h1>
     <br>
-    <form action="/Home/TeamAdd" method="post">
+    <form action="/Home/TeamEdit" method="post">
         <input type="hidden" name="LID" value="@Model.LID" />
         <input type="hidden" name="TID" value="@Model.TID" />
         <label for="TName">Team name:</label><br>
@@ -19,7 +19,16 @@
         <label for="Country">Country:</label><br>
         <input type="text" name="Country"><br>
         <label for="Engine">Engine type:</label><br>
-        <input type="text" name="Engine"><br>
+        <datalist id="Engine">
+            <option value="Ferrari">Ferrari</option>
+            <option value="Honda">Honda</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Audi">Audi</option>
+            <option value="Renault">Renault</option>
+            <option value="BMW">BMW</option>
+            <option value="Gibson">Gibson</option>
+            <option value="Seat">Seat</option>
+        </datalist>
         <input type="submit" value="Submit">
     </form>
 </body>

@@ -44,7 +44,7 @@ namespace Repository
             olditem.CountryB = newitem.CountryB;
             olditem.BornYear = newitem.BornYear;
             olditem.OwnTeam = newitem.OwnTeam;
-            olditem.RaceNumber = newitem.RaceNumber;
+            olditem.RaceNumber = newitem.RaceNumber;                        
             context.SaveChanges();
         }
     }

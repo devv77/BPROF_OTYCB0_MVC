@@ -19,5 +19,21 @@ namespace Models
 
         public virtual ICollection<Team> Teams{get;set;}
 
+        public override bool Equals(object obj)
+        {
+            if (obj is League)
+            {
+                League league= obj as League;
+                return this.LID == league.LID && this.Name== league.Name && this.Rating == league.Rating
+                    && this.Homology == league.Homology && this.RaceTypes == league.RaceTypes ;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
     }
 }

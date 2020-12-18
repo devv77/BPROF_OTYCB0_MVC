@@ -23,8 +23,23 @@ namespace Models
         public string LID { get; set; }
         [NotMapped]
         public virtual League League { get; set; }
-        
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Team)
+            {
+                Team team = obj as Team;
+                return this.LID == team.LID && this.TName == team.TName && this.Created == team.Created
+                    && this.Country == team.Country && this.Engine == team.Engine && this.Drivers== team.Drivers
+                    && this.TID == team.TID;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
 
     }
 }
