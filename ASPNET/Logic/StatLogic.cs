@@ -61,20 +61,24 @@ namespace Logic
         {
             var t111 = teamLogic.GetAllTeam();
             var d111 = driverLogic.GetDrivers();
-            var oldTeamD111 = (from x in teamLogic.GetAllTeam().ToList()
-                            join y in driverLogic.GetDrivers().ToList()
-                            on x.TID equals y.TID
+            var oldTeam= (from x in teamLogic.GetAllTeam().ToList()                                                        
                             orderby x.Created ascending
-                            select y);
+                            select x).FirstOrDefault();
+            var oldestteamdrivers = (from x in driverLogic.GetDrivers().ToList()
+                                     where x.TID == oldTeam.TID
+                                     select x).ToList();                                                                                        
 
 
 
+            /*
             var oldTeamD = (from x in teamLogic.GetAllTeam().ToList()                            
                             join y in driverLogic.GetDrivers().ToList()
                             on x.TID equals y.TID
                             orderby x.Created ascending
                             select x.Drivers).FirstOrDefault().ToList();
-            return oldTeamD;
+
+            */
+            return oldestteamdrivers;
         }
 
 
@@ -86,26 +90,25 @@ namespace Logic
             var MDIT = (from x in teamLogic.GetAllTeam().ToList()
                         join y in driverLogic.GetDrivers().ToList()
                         on x.TID equals y.TID
-                        orderby x.Drivers.Count descending
-                        select x.Drivers.Count).FirstOrDefault();
+                        group y by x.TID into g
+                        orderby g.Count() descending
+                        select g.Count()).FirstOrDefault();
             return MDIT;
         }
 
         public List<Team> TeamOfBestLeague()
         {
+            var bestleagues = (from x in leagueLogic.GetLeagues().ToList()
+                               orderby x.Rating descending
+                               select x).FirstOrDefault();
 
-            var TBL = (from x in leagueLogic.GetLeagues().ToList()
-                       join y in teamLogic.GetAllTeam().ToList()
-                       on x.LID equals y.LID
-                       group x by x.Rating into g
-                       select new
-                       {
-                           _id = g.Key,
-                           _teams = g.SelectMany(x => x.Teams).Distinct().ToList()
-                       }).FirstOrDefault();
-                       
 
-            return TBL._teams;
+            var TBL = (from x in teamLogic.GetAllTeam().ToList()
+                       where x.LID == bestleagues.LID
+                       orderby x.TName ascending
+                       select x).ToList();                       
+
+            return TBL;
         }
 
 
@@ -113,13 +116,17 @@ namespace Logic
         public string MostUsedEngine()
         {
 
-            var EAD = (from x in teamLogic.GetAllTeam().ToList()
+            var abcd = (from x in teamLogic.GetAllTeam().ToList()
                        group x by x.Engine into g
+                       orderby g.Count() descending
                        select new
                        {
                            _name = g.Key,
                            _count = g.Count()
-                       }).FirstOrDefault();
+                       });
+
+            var EAD = abcd.FirstOrDefault();
+
             string output = "";
             output += EAD._name.ToString()+" "+ EAD._count.ToString();
 

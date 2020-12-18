@@ -82,15 +82,10 @@ h1 {
     top:20vh;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(autofit, minmax(25rem,1fr));
-    grid-gap:4rem;
-}
 
-.grid-item{
-    position:relative;
-    display:flex;
-    height:40rem;
-    width:10rem;
+.content table{
+    text-align:center;
+    padding:10px;
+    border-style:dashed;
+    border-color:black;
 }

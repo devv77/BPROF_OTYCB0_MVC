@@ -151,6 +151,8 @@ namespace ASPNET.Controllers
             teamLogic.AddTeam(tm6);
             Team tm7 = new Team { TID = Guid.NewGuid().ToString(), TName = "Alfa Romeo Racing Orlen", Created = 2019, Country = "Switzerland", Engine = ESuppliers.Ferrari, LID = lg1.LID };
             teamLogic.AddTeam(tm7);
+            Team tm8 = new Team { TID = Guid.NewGuid().ToString(), TName = "McLaren-Renault", Created = 1963, Country = "Switzerland", Engine = ESuppliers.Renault, LID = lg1.LID };
+            teamLogic.AddTeam(tm8);
             /*------------------------------------------------------------------------*/
             Driver dr1 = new Driver { DID = Guid.NewGuid().ToString(), DName="Valtteri Bottas", BornYear=1989, CountryB="Finland", RaceNumber=77, TID=tm1.TID};
             driverLogic.AddDriver(dr1);
@@ -168,6 +170,12 @@ namespace ASPNET.Controllers
             driverLogic.AddDriver(dr7);
             Driver dr8 = new Driver { DID = Guid.NewGuid().ToString(), DName = "Kimi Räikkönen", BornYear = 1979, CountryB = "Finland", RaceNumber = 7, TID = tm7.TID };
             driverLogic.AddDriver(dr8);
+            Driver dr9 = new Driver { DID = Guid.NewGuid().ToString(), DName = "Lando Norris", BornYear = 1999, CountryB = "England", RaceNumber = 4, TID = tm8.TID };
+            driverLogic.AddDriver(dr9);
+            Driver dr10 = new Driver { DID = Guid.NewGuid().ToString(), DName = "Carlos Sainz Jr.", BornYear = 1994, CountryB = "Spain", RaceNumber = 55, TID = tm8.TID };
+            driverLogic.AddDriver(dr10);
+            Driver dr11 = new Driver { DID = Guid.NewGuid().ToString(), DName = "Paul Di Resta", BornYear = 1986, CountryB = "England", RaceNumber = 40, TID = tm8.TID };
+            driverLogic.AddDriver(dr11);
 
             return RedirectToAction(nameof(Index));
         }

@@ -368,8 +368,8 @@ namespace Tests
             };
 
             List<Team> expected = new List<Team>();
-            expected.Add(teams[0]);
             expected.Add(teams[1]);
+            expected.Add(teams[0]);
             expected.Add(teams[2]);
 
             leagueRepo.Setup(x => x.Search()).Returns(leagues.AsQueryable);
