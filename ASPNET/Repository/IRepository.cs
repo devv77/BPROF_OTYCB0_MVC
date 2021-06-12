@@ -11,7 +11,7 @@ namespace Repository
         T Search(string uid);
         IQueryable<T> Search();
         void Update(string oldid, T newitem);
-        
+        void Save();
 
     }
 }

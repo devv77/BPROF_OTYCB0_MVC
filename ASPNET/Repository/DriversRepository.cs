@@ -47,5 +47,10 @@ namespace Repository
             olditem.RaceNumber = newitem.RaceNumber;                        
             context.SaveChanges();
         }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

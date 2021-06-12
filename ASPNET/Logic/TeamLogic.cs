@@ -59,5 +59,17 @@ namespace Logic
         {
             teamrepo.Update(oldteam, newteam);
         }
+
+        public void AddDriverToTeam(Driver d, string tid)
+        {
+            GetTeam(tid).Drivers.Add(d);
+            teamrepo.Save();
+        }
+        
+        public void RemoveDriverFromTeam(Driver d, string tid)
+        {
+            GetTeam(tid).Drivers.Remove(d);
+            teamrepo.Save();
+        }
     }
 }

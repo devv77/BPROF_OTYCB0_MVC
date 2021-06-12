@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Models
 {
@@ -18,7 +19,8 @@ namespace Models
         public int Rating { get; set; }
         public bool Homology { get; set; }//open wheeled=1 or sport/touring=0
         public RaceType RaceTypes { get; set; }
-
+        [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Team> Teams{get;set;}
 
         public override bool Equals(object obj)

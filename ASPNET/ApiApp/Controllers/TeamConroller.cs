@@ -10,10 +10,10 @@ namespace ApiApp.Controllers
 {
     [ApiController]
     [Route("{controller}")]
-    public class TeamConroller
+    public class TeamController: ControllerBase
     {
         TeamLogic logic;
-        public TeamConroller(TeamLogic logic)
+        public TeamController(TeamLogic logic)
         {
             this.logic = logic;
         }

@@ -49,5 +49,10 @@ namespace Repository
             }
             context.SaveChanges();
         }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

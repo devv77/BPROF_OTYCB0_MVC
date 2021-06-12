@@ -27,6 +27,11 @@ namespace Repository
             Delete(Search(LID));
         }
 
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
         public League Search(string LID)
         {
             return context.Leagues.FirstOrDefault(q => q.LID == LID);
