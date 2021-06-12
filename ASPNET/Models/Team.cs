@@ -11,6 +11,7 @@ namespace Models
     public class Team
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string TID { get; set; }
         [StringLength(150)]
         public string TName { get; set; }

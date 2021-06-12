@@ -9,6 +9,7 @@ namespace Models
     public class Driver
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string DID { get; set; }
         [StringLength(50)]
         public string DName { get; set; }

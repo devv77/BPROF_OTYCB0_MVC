@@ -9,6 +9,7 @@ namespace Models
     public class League
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string LID { get; set; }
         [StringLength(100)]
         public string Name { get; set; }
