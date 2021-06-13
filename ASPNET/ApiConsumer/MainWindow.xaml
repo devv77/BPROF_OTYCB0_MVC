@@ -6,11 +6,47 @@
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000">
-    <Grid>
-        <ComboBox x:Name="cbox" SelectionChanged="cbox_SelectionChanged" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="435" Height="30"/>
-        <ListBox  x:Name="lbox" Margin="10,45,555,0" VerticalAlignment="Top" Width="435" Height="172"/>
-        <ComboBox x:Name="cbox2" SelectionChanged="cbox2_SelectionChanged" HorizontalAlignment="Left" Margin="476,10,0,0" VerticalAlignment="Top" Width="435" Height="30"/>
-        <ListBox  x:Name="lbox2" Margin="476,45,89,0" VerticalAlignment="Top" Width="435" Height="172"/>
+    <Grid Margin="1,0,-1,0">
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="435" Height="30">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ListBox  x:Name="lbox" Margin="10,45,555,0" VerticalAlignment="Top" Width="435" Height="172" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.Teams}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox  x:Name="lbox2" Margin="476,45,89,0" VerticalAlignment="Top" Width="435" Height="172" ItemsSource="{Binding ElementName=lbox, Path=SelectedItem.Drivers}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding DName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="10,337,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
+        <Grid x:Name="LeagueOperators" Margin="450,1,388,361">
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Click="AddLeagueClick"/>
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="51,22,0,0" VerticalAlignment="Top" Click="EditLeagueClick"/>
+            <Button Content="Remove" HorizontalAlignment="Left" Margin="90,22,0,0" VerticalAlignment="Top" Click="RemoveLeagueClick"/>
+            <Label Content="League Operations" HorizontalAlignment="Left" Margin="8,-4,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="TeamOperators" Margin="10,222,834,124">
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Click="AddTeamClick"/>
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="41,30,0,0" VerticalAlignment="Top" Click="EditTeamClick"/>
+            <Button Content="Remove" HorizontalAlignment="Left" Margin="70,30,0,0" VerticalAlignment="Top" Click="RemoveTeamClick"/>
+            <Label Content="Team Operations" HorizontalAlignment="Left" Margin="10,-1,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="DriverOperators" Margin="476,222,388,124">
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Click="AddDriverClick"/>
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="41,30,0,0" VerticalAlignment="Top" Click="EditDriverClick"/>
+            <Button Content="Remove" HorizontalAlignment="Left" Margin="70,30,0,0" VerticalAlignment="Top" Click="RemoveDriverClick"/>
+            <Label Content="Driver Operations" HorizontalAlignment="Left" Margin="10,-1,0,0" VerticalAlignment="Top"/>
+        </Grid>
 
     </Grid>
 </Window>

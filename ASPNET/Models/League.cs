@@ -18,9 +18,8 @@ namespace Models
         [Range(0, 10)]
         public int Rating { get; set; }
         public bool Homology { get; set; }//open wheeled=1 or sport/touring=0
-        public RaceType RaceTypes { get; set; }
-        [NotMapped]
-        [JsonIgnore]
+        public RaceType RaceTypes { get; set; }        
+        
         public virtual ICollection<Team> Teams{get;set;}
 
         public override bool Equals(object obj)

@@ -23,7 +23,7 @@ namespace Models
         public ESuppliers Engine { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
         public string LID { get; set; }
-        [NotMapped]
+        [NotMapped]    
         [JsonIgnore]
         public virtual League League { get; set; }
 

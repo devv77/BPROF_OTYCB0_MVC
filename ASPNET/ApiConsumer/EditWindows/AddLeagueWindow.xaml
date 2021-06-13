@@ -1,0 +1,29 @@
+﻿<Window x:Class="ApiConsumer.AddLeagueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiConsumer"        
+        mc:Ignorable="d"
+        Title="AddLeagueWindow" Height="300" Width="400">
+    <Grid>
+        <Label Content="New League Detalis" FontSize="18" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="League Name" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="106" />
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="108,53,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="148" />
+        <Label Content="Rating" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="95" />
+        <TextBox  x:Name="Rating" HorizontalAlignment="Left" Margin="108,95,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="149" />
+        <Label Content="Race Types" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="95" />
+        <ComboBox x:Name="RaceTypes" HorizontalAlignment="Left" Margin="108,0,0,0" VerticalAlignment="Center" Width="149">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Path=RaceType}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
+
+        <Button Click="AddLeague" Content="Add" HorizontalAlignment="Left" Margin="29,179,0,0" VerticalAlignment="Top" />
+
+    </Grid>
+</Window>
