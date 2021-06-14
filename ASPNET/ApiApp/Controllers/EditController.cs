@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
@@ -88,11 +89,11 @@ namespace ApiApp.Controllers
         {
             tlogic.AddDriverToTeam(dlogic.GetDriver(item.DriverUid), item.TeamUid);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public void RemoveDriverFromTeam([FromBody] DriverAndTeam item)
         {
-            tlogic.AddDriverToTeam(dlogic.GetDriver(item.DriverUid), item.TeamUid);
+            tlogic.RemoveDriverFromTeam(dlogic.GetDriver(item.DriverUid), item.TeamUid);
         }
 
 

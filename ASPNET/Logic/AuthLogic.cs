@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,8 +13,8 @@ namespace Logic
 {
     public class AuthLogic
     {
-        UserManager<IdentityUser> _userManager;
-        RoleManager<IdentityRole> _roleManager;
+        UserManager<IdentityUser> _userManager; //user repó
+        RoleManager<IdentityRole> _roleManager; //role repó
 
         public AuthLogic(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
@@ -32,9 +33,14 @@ namespace Logic
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Customer");
+                await _userManager.AddToRoleAsync(user, "Admin");
             }
             return user.UserName;
+        }
+
+        public IEnumerable<IdentityUser> GetAllUser()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<TokenViewModel> LoginUser(LoginViewModel model)
@@ -56,7 +62,7 @@ namespace Logic
 
                 claims.AddRange(roles.Select(role => new Claim(ClaimsIdentity.DefaultRoleClaimType, role)));
 
-
+                //Titkos kulcs 
                 var signinKey = new SymmetricSecurityKey(
                   Encoding.UTF8.GetBytes("Paris Berlin Cairo Sydney Tokyo Beijing Rome London Athens"));
 
