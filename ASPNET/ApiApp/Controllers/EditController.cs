@@ -89,6 +89,7 @@ namespace ApiApp.Controllers
         {
             tlogic.AddDriverToTeam(dlogic.GetDriver(item.DriverUid), item.TeamUid);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpDelete]
         public void RemoveDriverFromTeam([FromBody] DriverAndTeam item)
