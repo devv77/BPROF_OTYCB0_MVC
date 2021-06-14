@@ -21,9 +21,11 @@ namespace ApiConsumer.EditWindows
     public partial class EditLeagueWindow : Window
     {
         League league;
-        public EditLeagueWindow(League league)
+        private string token;
+        public EditLeagueWindow(League league, string token)
         {
             this.league = league;
+            this.token = token;
             Name.Text = league.Name;
             Rating.Text = league.Rating.ToString();
             RaceTypes.SelectedItem = league.RaceTypes.ToString();
@@ -36,7 +38,7 @@ namespace ApiConsumer.EditWindows
             league.Rating = int.Parse(Rating.Text);
             //league.RaceTypes = RaceTypes.SelectedItem;
 
-            RestService restService = new RestService(ApiAddress.Address(), "/League");
+            RestService restService = new RestService(ApiAddress.Address(), "/League", token);
             restService.Put<string, League>(league.LID, league);
             MainWindow mainWindow = new MainWindow();
             mainWindow.GetLeagueListNames();

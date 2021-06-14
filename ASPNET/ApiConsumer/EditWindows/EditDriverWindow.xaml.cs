@@ -21,9 +21,11 @@ namespace ApiConsumer.EditWindows
     public partial class EditDriverWindow : Window
     {
         Driver driver;
-        public EditDriverWindow(Driver driver)
+        private string token;
+        public EditDriverWindow(Driver driver, string token)
         {
             this.driver = driver;
+            this.token = token;
             DName.Text = driver.DName;
             BornYear.Text = driver.BornYear.ToString();
             CountryB.Text = driver.CountryB;
@@ -38,7 +40,7 @@ namespace ApiConsumer.EditWindows
             driver.CountryB = CountryB.Text;
             driver.RaceNumber = int.Parse(RaceNumber.Text);
 
-            RestService restService = new RestService(ApiAddress.Address(), "/Driver");
+            RestService restService = new RestService(ApiAddress.Address(), "/Driver", token);
             restService.Put<string, Driver>(driver.DID, driver);
 
             MainWindow mainWindow = new MainWindow();

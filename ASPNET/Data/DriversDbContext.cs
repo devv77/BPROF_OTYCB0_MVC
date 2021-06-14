@@ -67,8 +67,8 @@ namespace Data
                 SecurityStamp = string.Empty
             };
 
-            appUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "Almafa123!");
-            appUser2.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "Almafa123!");
+            appUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "Abcd1234");
+            appUser2.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "Abcd1234");
 
 
             modelBuilder.Entity<IdentityUser>().HasData(appUser);

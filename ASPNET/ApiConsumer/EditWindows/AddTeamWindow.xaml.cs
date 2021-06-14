@@ -22,9 +22,11 @@ namespace ApiConsumer.EditWindows
     {
 
         League league=new League();
-        public AddTeamWindow(League league)
+        private string token;
+        public AddTeamWindow(League league, string token)
         {
             this.league = league;
+            this.token = token;
             InitializeComponent();
         }
 
@@ -40,7 +42,7 @@ namespace ApiConsumer.EditWindows
                 League = league
             };
 
-            RestService restService = new RestService(ApiAddress.Address(), "/Team");
+            RestService restService = new RestService(ApiAddress.Address(), "/Team", token);
             restService.Post<Team>(team);
             MainWindow mainWindow = new MainWindow();
             mainWindow.GetLeagueListNames();

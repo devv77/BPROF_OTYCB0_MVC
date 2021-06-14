@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -27,6 +28,7 @@ namespace ApiEndpoint.Controllers
             return Ok(new { UserName = result });
         }
 
+        [Authorize()]
         [HttpGet]
         public IEnumerable<IdentityUser> GetUsers()
         {

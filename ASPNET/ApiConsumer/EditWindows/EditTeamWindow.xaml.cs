@@ -21,9 +21,11 @@ namespace ApiConsumer.EditWindows
     public partial class EditTeamWindow : Window
     {
         Team team;
-        public EditTeamWindow(Team team)
+        private string token;
+        public EditTeamWindow(Team team, string token)
         {
             this.team = team;
+            this.token = token;
             TName.Text = team.TName;
             Created.Text = team.Created.ToString();
             Country.Text = team.Country;
@@ -38,7 +40,7 @@ namespace ApiConsumer.EditWindows
             team.Country = Country.Text;
             //Engine helye
 
-            RestService restService = new RestService(ApiAddress.Address(), "/Team");
+            RestService restService = new RestService(ApiAddress.Address(), "/Team", token);
             restService.Put<string, Team>(team.TID, team);
             MainWindow mainWindow = new MainWindow();
             mainWindow.GetLeagueListNames();

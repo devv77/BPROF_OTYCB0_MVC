@@ -22,16 +22,37 @@ namespace ApiConsumer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string token;
         public MainWindow()
         {
             InitializeComponent();
-            GetLeagueListNames();
+            Login();
+        }
+
+        public async Task Login()
+        {
+            PasswordWindow pw = new PasswordWindow();
+            if (pw.ShowDialog() == true)
+            {
+                RestService restService = new RestService(ApiAddress.Address(), "/Auth");
+                TokenViewModel tvm =await restService.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
+                {
+                    Username = pw.UserName,
+                    Password = pw.PassWord
+                });
+                token = tvm.Token;
+                GetLeagueListNames();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         public async Task GetLeagueListNames()
         {
 
-            RestService restService = new RestService(ApiAddress.Address(), "/League");
+            RestService restService = new RestService(ApiAddress.Address(), "/League", token);
             
             IEnumerable<League> leaguelistnames = await restService.Get<League>();
 
@@ -59,7 +80,7 @@ namespace ApiConsumer
 
         private void AddLeagueClick(object sender, RoutedEventArgs e)
         {
-            AddLeagueWindow addLeagueWindow = new AddLeagueWindow();
+            AddLeagueWindow addLeagueWindow = new AddLeagueWindow(token);
             addLeagueWindow.Show();
 
             
@@ -67,7 +88,7 @@ namespace ApiConsumer
 
         private void EditLeagueClick(object sender, RoutedEventArgs e)
         {
-            EditLeagueWindow editLeagueWindow = new EditLeagueWindow(cbox.SelectedItem as League);
+            EditLeagueWindow editLeagueWindow = new EditLeagueWindow(cbox.SelectedItem as League, token);
             editLeagueWindow.Show();
 
             
@@ -77,7 +98,7 @@ namespace ApiConsumer
         {
             if(cbox.SelectedItem as League !=null)
             {
-                RestService restService = new RestService(ApiAddress.Address(), "/League");
+                RestService restService = new RestService(ApiAddress.Address(), "/League", token);
                 restService.Delete<string>((cbox.SelectedItem as League).LID);
 
                 //update the list
@@ -87,14 +108,14 @@ namespace ApiConsumer
 
         private void AddTeamClick(object sender, RoutedEventArgs e)
         {
-            AddTeamWindow addTeamWindow = new AddTeamWindow(cbox.SelectedItem as League);
+            AddTeamWindow addTeamWindow = new AddTeamWindow(cbox.SelectedItem as League, token);
             addTeamWindow.Show();
             
         }
 
         private void EditTeamClick(object sender, RoutedEventArgs e)
         {
-            EditTeamWindow editTeamWindow = new EditTeamWindow(lbox.SelectedItem as Team);
+            EditTeamWindow editTeamWindow = new EditTeamWindow(lbox.SelectedItem as Team, token);
             editTeamWindow.Show();
 
             
@@ -104,7 +125,7 @@ namespace ApiConsumer
         {
             if (lbox.SelectedItem as Team !=null)
             {
-                RestService restService = new RestService(ApiAddress.Address(), "/Team");
+                RestService restService = new RestService(ApiAddress.Address(), "/Team", token);
                 restService.Delete<string>((lbox.SelectedItem as Team).TID);
 
                 GetLeagueListNames();
@@ -113,14 +134,14 @@ namespace ApiConsumer
 
         private void AddDriverClick(object sender, RoutedEventArgs e)
         {
-            AddDriverWindow addDriverWindow = new AddDriverWindow(lbox.SelectedItem as Team);
+            AddDriverWindow addDriverWindow = new AddDriverWindow(lbox.SelectedItem as Team, token);
             addDriverWindow.Show();
             
         }
 
         private void EditDriverClick(object sender, RoutedEventArgs e)
         {
-            EditDriverWindow editDriverWindow = new EditDriverWindow(lbox2.SelectedItem as Driver);
+            EditDriverWindow editDriverWindow = new EditDriverWindow(lbox2.SelectedItem as Driver, token);
             editDriverWindow.Show();
             
         }
@@ -129,7 +150,7 @@ namespace ApiConsumer
         {
             if (lbox2.SelectedItem as Driver != null)
             {
-                RestService restService = new RestService(ApiAddress.Address(), "/Driver");
+                RestService restService = new RestService(ApiAddress.Address(), "/Driver", token);
                 restService.Delete<string>((lbox2.SelectedItem as Driver).DID);
 
                 //update the list

@@ -21,10 +21,12 @@ namespace ApiConsumer
     public partial class AddDriverWindow : Window
     {
         Team team;
+        private string token;
 
-        public AddDriverWindow(Team team)
+        public AddDriverWindow(Team team, string token)
         {
             this.team=team;
+            this.token = token;
             InitializeComponent();
             
         }
@@ -41,7 +43,7 @@ namespace ApiConsumer
                 OwnTeam = team,                
             };
            
-            RestService restService = new RestService(ApiAddress.Address(), "/Driver");
+            RestService restService = new RestService(ApiAddress.Address(), "/Driver", token);
             restService.Post<Driver>(driver);
             MainWindow mainWindow = new MainWindow();
             mainWindow.GetLeagueListNames();

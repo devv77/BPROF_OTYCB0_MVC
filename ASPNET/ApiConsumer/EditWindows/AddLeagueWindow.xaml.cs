@@ -21,8 +21,10 @@ namespace ApiConsumer
     public partial class AddLeagueWindow : Window
     {
         Random rnd = new Random();
-        public AddLeagueWindow()
+        private string token;
+        public AddLeagueWindow(string token)
         {
+            this.token = token;
             InitializeComponent();
         }
 
@@ -36,7 +38,7 @@ namespace ApiConsumer
                 //RaceTypes = RaceTypes.SelectedItem as RaceType
             };
 
-            RestService restservice = new RestService(ApiAddress.Address(), "/League");
+            RestService restservice = new RestService(ApiAddress.Address(), "/League", token);
             restservice.Post<League>(league);
 
             MainWindow main = new MainWindow();

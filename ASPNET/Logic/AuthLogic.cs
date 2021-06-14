@@ -33,14 +33,14 @@ namespace Logic
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddToRoleAsync(user, "Customer");
             }
             return user.UserName;
         }
 
         public IEnumerable<IdentityUser> GetAllUser()
         {
-            throw new NotImplementedException();
+            return _userManager.Users;
         }
 
         public async Task<TokenViewModel> LoginUser(LoginViewModel model)
