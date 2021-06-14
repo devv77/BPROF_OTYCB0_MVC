@@ -30,7 +30,8 @@ namespace ApiConsumer
 
         public async Task GetLeagueListNames()
         {
-            RestService restService = new RestService("https://localhost:5001/", "/League");
+
+            RestService restService = new RestService(ApiAddress.Address(), "/League");
             
             IEnumerable<League> leaguelistnames = await restService.Get<League>();
 

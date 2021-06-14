@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 
@@ -8,7 +10,7 @@ using System;
 
 namespace Data
 {
-    public class DriversDbContext:DbContext
+    public class DriversDbContext:IdentityDbContext<IdentityUser>
     {
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Team> Teams { get; set; }
@@ -28,13 +30,17 @@ namespace Data
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseLazyLoadingProxies().
-                    UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Driver.mdf;integrated security=True;MultipleActiveResultSets=True");
+                    //UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Driver.mdf;integrated security=True;MultipleActiveResultSets=True");
+                    UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DriverDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //TODO alap admin
+
             modelBuilder.Entity<Driver>(entity =>
             {
                 entity
