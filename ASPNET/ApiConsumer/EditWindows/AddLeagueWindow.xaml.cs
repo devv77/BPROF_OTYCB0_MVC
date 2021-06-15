@@ -26,6 +26,10 @@ namespace ApiConsumer
         {
             this.token = token;
             InitializeComponent();
+            foreach (var item in Enum.GetValues(typeof(RaceType)))
+            {
+                RaceTypes.Items.Add(item);
+            }
         }
 
         private void AddLeague(object sender, RoutedEventArgs e)
@@ -35,7 +39,7 @@ namespace ApiConsumer
                 Name = Name.Text.ToString(),
                 Rating = rnd.Next(1, 10),
                 Homology = true,
-                //RaceTypes = RaceTypes.SelectedItem as RaceType
+                //RaceTypes = RaceTypes.SelectedItem.ToString()
             };
 
             RestService restservice = new RestService(ApiAddress.Address(), "/League", token);

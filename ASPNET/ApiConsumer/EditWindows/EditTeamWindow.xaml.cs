@@ -26,11 +26,16 @@ namespace ApiConsumer.EditWindows
         {
             this.team = team;
             this.token = token;
-            TName.Text = team.TName;
-            Created.Text = team.Created.ToString();
-            Country.Text = team.Country;
-            Engine.Text = team.Engine.ToString();
+            
             InitializeComponent();
+            foreach (var item in Enum.GetValues(typeof(ESuppliers)))
+            {
+                Engine.Items.Add(item);
+            }
+            TName.Text = team.TName.ToString();
+            Created.Text = team.Created.ToString();
+            Country.Text = team.Country.ToString();
+            Engine.Text = team.Engine.ToString();
         }
 
         private void EditTeam(object sender, RoutedEventArgs e)
@@ -38,7 +43,7 @@ namespace ApiConsumer.EditWindows
             team.TName = TName.Text;
             team.Created = int.Parse(Created.Text);
             team.Country = Country.Text;
-            //Engine helye
+            
 
             RestService restService = new RestService(ApiAddress.Address(), "/Team", token);
             restService.Put<string, Team>(team.TID, team);

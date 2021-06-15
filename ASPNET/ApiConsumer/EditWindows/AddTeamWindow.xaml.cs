@@ -1,17 +1,6 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ApiConsumer.EditWindows
 {
@@ -20,14 +9,19 @@ namespace ApiConsumer.EditWindows
     /// </summary>
     public partial class AddTeamWindow : Window
     {
-
-        League league=new League();
+        private League league = new League();
         private string token;
+
         public AddTeamWindow(League league, string token)
         {
             this.league = league;
             this.token = token;
+
             InitializeComponent();
+            foreach (var item in Enum.GetValues(typeof(ESuppliers)))
+            {
+                Engine.Items.Add(item);
+            }
         }
 
         private void AddTeam(object sender, RoutedEventArgs e)
@@ -37,7 +31,7 @@ namespace ApiConsumer.EditWindows
                 TName = TName.Text,
                 Created = int.Parse(Created.Text),
                 Country = Country.Text,
-                //Engine = Engine.Text,
+                //Engine = Engine.SelectedItem,
                 LID = league.LID,
                 League = league
             };
@@ -47,7 +41,6 @@ namespace ApiConsumer.EditWindows
             MainWindow mainWindow = new MainWindow();
             mainWindow.GetLeagueListNames();
             this.Close();
-
         }
     }
 }

@@ -26,11 +26,12 @@ namespace ApiConsumer.EditWindows
         {
             this.driver = driver;
             this.token = token;
-            DName.Text = driver.DName;
-            BornYear.Text = driver.BornYear.ToString();
-            CountryB.Text = driver.CountryB;
-            RaceNumber.Text = driver.RaceNumber.ToString();
+            
             InitializeComponent();
+            DName.Text = driver.DName.ToString();
+            BornYear.Text = driver.BornYear.ToString();
+            CountryB.Text = driver.CountryB.ToString();
+            RaceNumber.Text = driver.RaceNumber.ToString();
         }
 
         private void EditDriver(object sender, RoutedEventArgs e)

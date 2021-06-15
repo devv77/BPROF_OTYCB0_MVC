@@ -26,10 +26,11 @@ namespace ApiConsumer.EditWindows
         {
             this.league = league;
             this.token = token;
+            
+            InitializeComponent();
             Name.Text = league.Name;
             Rating.Text = league.Rating.ToString();
             RaceTypes.SelectedItem = league.RaceTypes.ToString();
-            InitializeComponent();
         }
 
         private void EditLeague(object sender, RoutedEventArgs e)
