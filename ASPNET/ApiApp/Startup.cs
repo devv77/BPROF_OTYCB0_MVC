@@ -69,7 +69,7 @@ namespace ApiApp
 
             services.AddSwaggerGen(opt =>
         {
-            opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "KnifeStores Api endpoints", Version = "v1" });
+            opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "FIA Championships", Version = "v1" });
             var securityScheme = new OpenApiSecurityScheme
             {
                 Name = "JWT Authentication",
@@ -119,7 +119,9 @@ namespace ApiApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-            
+            app.UseSwagger();
+            app.UseSwaggerUI(opt=> opt.SwaggerEndpoint("./v1/swagger.json", "FIA API"));
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

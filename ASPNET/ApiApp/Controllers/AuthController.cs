@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ApiEndpoint.Controllers
 {
     [ApiController]
-    [Route("{controller}")]
+    [Route("Auth")]
     public class AuthController : Controller
     {
         AuthLogic _authLogic;

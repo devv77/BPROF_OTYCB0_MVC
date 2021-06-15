@@ -11,7 +11,7 @@ namespace ApiApp.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("{controller}")]
+    [Route("Team")]
     public class TeamController: ControllerBase
     {
         TeamLogic logic;

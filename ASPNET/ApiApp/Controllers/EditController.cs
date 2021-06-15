@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ApiApp.Controllers
 {
     [ApiController]
-    [Route("{controller}")]
+    [Route("Edit")]
     public class EditController : ControllerBase
     {
         DriverLogic dlogic;

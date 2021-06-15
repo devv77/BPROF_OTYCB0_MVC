@@ -28,6 +28,12 @@ namespace ApiConsumer
             InitializeComponent();
             Login();
         }
+        public MainWindow(string token)
+        {
+            InitializeComponent();
+            Login();
+        }
+
 
         public async Task Login()
         {

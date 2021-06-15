@@ -11,7 +11,7 @@ namespace ApiApp.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("{controller}")]
+    [Route("League")]
     public class LeagueController
     {
         LeagueLogic logic;
